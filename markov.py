@@ -2,6 +2,8 @@
 
 import sys
 from random import choice
+import os 
+import discord
 
 
 def open_and_read_file(filenames):
@@ -64,3 +66,25 @@ text = open_and_read_file(filenames)
 
 # Get a Markov chain
 chains = make_chains(text)
+
+client = discord.Client()
+
+
+@client.event
+async def on_ready():
+    print(f'Successfully connected! Logged in as {client.user}.')
+
+
+@client.event
+async def on_message(message):
+    # Whatever this line is for, it's provending additional lines from popping up on the bot.
+    if message.author == client.user:
+        return
+
+    # TODO: replace this with your code
+    await message.channel.send('Hello, how are you? ')
+    
+
+
+client.run(os.environ['DISCORD_TOKEN'])
+
