@@ -77,13 +77,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    # Whatever this line is for, it's provending additional lines from popping up on the bot.
-    if message.author == client.user:
-        return
+#     # check if author == user
+#     if message.author == client.user:
+#         return
 
-    # TODO: replace this with your code
-    await message.channel.send('Hello, how are you? ')
-    
+#     # TODO: replace this with your code
+#     await message.channel.send('Hello, how are you? ')
+
+    if message.content.startswith('$hello'):
+        await message.channel.send(f'Hello!, {message.author}')
+    if message.content.startswith('$markov')
+        await message.channel.send(make_text(chains))
 
 
 client.run(os.environ['DISCORD_TOKEN'])
